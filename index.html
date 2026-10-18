@@ -22,6 +22,7 @@
 .pack-reset{border:1px solid #65D6F4;background:#183B63;color:white;padding:10px 19px;border-radius:9px;cursor:pointer;font:inherit;display:none;margin:16px auto}
 .pack-reset:hover{background:#1976B9}
 @media(prefers-reduced-motion:reduce){.pack-art{transition:none}.pack-stage.opening .pack-art,.pack-stage.opening::after{animation:none}}
+.card-reveal{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:16px;max-width:1050px;margin:28px auto 12px;text-align:center}.card-reveal[hidden]{display:none}.reveal-card{animation:cardRise .55s ease both;min-width:0}.reveal-card img{display:block;width:100%;max-width:230px;margin:auto;border-radius:9px;box-shadow:0 12px 26px #0008}.reveal-card .missing-card{padding:25px 8px;border:1px solid #65D6F4;border-radius:10px;color:#9AB2C7}.pack-stage.opened{display:none}@keyframes cardRise{from{opacity:0;transform:translateY(30px) scale(.90)}to{opacity:1;transform:translateY(0) scale(1)}}@media(prefers-reduced-motion:reduce){.reveal-card{animation:none}} 
 </style>
 </head>
 <body class="background">
@@ -32,12 +33,42 @@
 <div class="pack-stage" id="pack-stage"><button type="button" id="pack-button" class="pack-click" aria-label="Rotate the JMSS card pack"><img id="pack-art" class="pack-art" src="index_images/cardpacks/common.png" alt="Blue JMSS TCG booster pack"></button></div>
 <p id="pack-status" class="pack-instructions" aria-live="polite">Click the pack 6 times to open it!</p>
 <div class="pack-progress" role="progressbar" aria-label="Progress to pack opening" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0" id="pack-progress"><div id="pack-fill"></div></div>
-<button type="button" class="pack-reset" id="pack-reset">Open another pack</button>
+<div id="card-reveal" class="card-reveal" aria-label="Five revealed cards" hidden></div><button type="button" class="pack-reset" id="pack-reset">Open another pack</button>
 </section>
 </main><nav class="bottom-nav"><a href="index.html">Home</a><a href="collection.html">Collection</a><a href="trade.html">Trade</a></nav>
 <script>
 (function(){
 const maxClicks=6, stage=document.getElementById('pack-stage'), button=document.getElementById('pack-button'), art=document.getElementById('pack-art'),status=document.getElementById('pack-status'),progress=document.getElementById('pack-progress'),fill=document.getElementById('pack-fill'),reset=document.getElementById('pack-reset');
+const cards=[
+["Flush Sac Anderson","flush-sac-anderson.webp"],
+["Algorithm Albrecht","algorithm-albrecht.webp"],
+["Stephen Finchy","stephen-finchy.webp"],
+["Peter Thompson","peter-thompson.webp"],
+["Vincenzo Piscioneri","vincenzo-piscioneri.webp"],
+["Romanian Gavrilescu","romanian-gavrilescu.webp"],
+["Rimkevicius","rimkevicius.webp"],
+["Scott Chittleborough","scott-chittleborough.webp"],
+["Kermond","kermond.webp"],
+["Rainy Xia","rainy-xia.webp"],
+["Sunny Xia","sunny-xia.webp"],
+["Muppet Finchy","muppet-finchy.webp"],
+["Dr Driscoll","dr-driscoll.webp"],
+["Danger Grainger","danger-grainger.webp"],
+["Gen Z Clarke","gen-z-clarke.webp"],
+["Bonehead Kermond","bonehead-kermond.webp"]
+];
+const reveal=document.getElementById('card-reveal');
+function showCards(){
+ const shuffled=[...cards];
+ for(let i=shuffled.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]];}
+ reveal.replaceChildren();
+ shuffled.slice(0,5).forEach(([name,file],i)=>{
+   const el=document.createElement('div');el.className='reveal-card';el.style.animationDelay=(i*0.12)+'s';
+   const img=document.createElement('img');img.src='cards/'+file;img.alt=name;img.loading='lazy';
+   img.addEventListener('error',()=>{const fallback=document.createElement('div');fallback.className='missing-card';fallback.textContent=name+' — image awaiting upload';img.replaceWith(fallback);});
+   el.append(img);reveal.append(el);
+ });reveal.hidden=false;
+}
 let clicks=0,rot=0,animating=false,opened=false;
 button.addEventListener('click',function(){
  if(animating||opened)return;
@@ -47,9 +78,9 @@ button.addEventListener('click',function(){
  progress.setAttribute('aria-valuenow',String(clicks));fill.style.width=(clicks/maxClicks*100)+'%';
  if(clicks<maxClicks){status.textContent=(maxClicks-clicks)+' more '+(maxClicks-clicks===1?'click':'clicks')+' to open your pack!';return;}
  animating=true;button.disabled=true;status.textContent='Opening pack…';art.style.transform='';stage.classList.add('opening');
- setTimeout(function(){stage.classList.remove('opening');stage.classList.add('opened');art.src='index_images/cardpacks/common.png';art.alt='Common JMSS TCG booster pack';opened=true;animating=false;status.textContent='Pack opened! Five cards coming soon.';reset.style.display='block';},2200);
+ setTimeout(function(){stage.classList.remove('opening');stage.classList.add('opened');art.src='index_images/cardpacks/common.png';art.alt='Common JMSS TCG booster pack';opened=true;animating=false;status.textContent='Your five cards!';showCards();reset.style.display='block';},2200);
 });
-reset.addEventListener('click',function(){clicks=0;rot=0;opened=false;animating=false;art.src='index_images/cardpacks/common.png';art.alt='Blue JMSS TCG booster pack';art.style.transform='';button.disabled=false;stage.classList.remove('opening','opened');progress.setAttribute('aria-valuenow','0');fill.style.width='0';status.textContent='Click the pack 6 times to open it!';reset.style.display='none';});
+reset.addEventListener('click',function(){clicks=0;rot=0;opened=false;animating=false;art.src='index_images/cardpacks/common.png';art.alt='Blue JMSS TCG booster pack';art.style.transform='';button.disabled=false;stage.classList.remove('opening','opened');progress.setAttribute('aria-valuenow','0');fill.style.width='0';status.textContent='Click the pack 6 times to open it!';reset.style.display='none';reveal.hidden=true;reveal.replaceChildren();});
 })();
 </script>
 </body></html>
