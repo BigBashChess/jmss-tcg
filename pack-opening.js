@@ -16,6 +16,7 @@
   fetch("card-demo-metadata.json").then(r=>r.ok?r.json():{}).then(data=>{metadata=data||{};}).catch(()=>{});
   const modal=$("card-detail"),modalBody=$("card-detail-body");
   function cardMeta(file){return metadata[file]||{rarity:"Rare",house:null,attack:null,defense:null,stamina:null,power:null};}
+  // Shows a card's rarity and spreadsheet statistics.
   function showDetails(name,file){
     if(!modal||!modalBody)return;
     const m=cardMeta(file);
@@ -43,11 +44,13 @@
   let clicks=0,angle=0,state="ready",selected=[],shown=0,timers=[];
   const schedule=(fn,ms)=>{const id=window.setTimeout(fn,ms);timers.push(id);};
   const clearTimers=()=>{timers.forEach(clearTimeout);timers=[];};
+  // Selects five different cards for each pack.
   function chooseCards(){
     const shuffled=cards.slice();
     for(let i=shuffled.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]];}
     return shuffled.slice(0,5);
   }
+  // Saves opened cards without clearing existing progress.
   function saveCards(items){
     let owned={};
     try{const result=JSON.parse(localStorage.getItem(STOR_KEY)||"{}");if(result&&typeof result==="object"&&!Array.isArray(result))owned=result;}catch(e){}
@@ -97,6 +100,7 @@
     if(reduced){selected.forEach((_,i)=>revealOne(i));}
     else selected.forEach((_,i)=>schedule(()=>revealOne(i),(i+1)*680));
   }
+  // Plays the pack-opening animation after repeated clicks.
   function openPack(){
     state="opening";button.disabled=true;status.textContent="Opening your pack…";
     art.style.transform="";stage.classList.add("opening");
@@ -111,11 +115,13 @@
     if(clicks>=maxClicks){openPack();return;}
     status.textContent="Keep clicking! The pack is starting to open…";
   });
+  // Reveals the remaining cards immediately.
   skip.addEventListener("click",()=>{
     if(state==="opening"){clearTimers();startCards();}
     if(state!=="revealing")return;
     clearTimers();for(let i=0;i<5;i++){reveal.children[i]?.classList.add("revealed");if(reveal.children[i])reveal.children[i].disabled=false;}finish();
   });
+  // Resets the pack so another one can be opened.
   reset.addEventListener("click",()=>{
     clearTimers();state="ready";clicks=0;angle=0;selected=[];shown=0;
     stage.hidden=false;stage.classList.remove("opening","opened");art.src="index_images/cardpacks/common.png";
