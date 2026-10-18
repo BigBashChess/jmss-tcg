@@ -1,0 +1,20 @@
+/* Pack opening: five individually revealed cards */
+.pack-stage[hidden],.card-reveal[hidden],#skip-reveal[hidden],#reveal-summary[hidden],.pack-progress[hidden]{display:none!important}
+.pack-stage.opened{display:none}
+.reveal-controls{display:flex;align-items:center;justify-content:center;gap:12px;min-height:32px;flex-wrap:wrap}
+#reveal-counter{color:#b6c9d7;font-size:.83rem;font-weight:750;font-variant-numeric:tabular-nums}
+#skip-reveal{background:#1a4769;color:#ecf5fb;border:1px solid #47738f;border-radius:5px;padding:7px 13px;cursor:pointer;font:inherit;font-size:.82rem}
+#skip-reveal:hover{background:#276f9a}
+#reveal-summary{color:#8dcbe6;text-align:center;font-size:.87rem}
+.card-reveal{perspective:900px;align-items:center!important}
+.flip-card{flex:0 1 190px;min-width:0;height:min(43vh,320px);max-width:190px;aspect-ratio:3/4;perspective:900px}
+.flip-card-inner{height:100%;width:100%;position:relative;transform-style:preserve-3d;transform:rotateY(180deg);transition:transform .7s cubic-bezier(.2,.7,.24,1)}
+.flip-card.revealed .flip-card-inner{transform:rotateY(0)}
+.flip-card-back,.flip-card-front{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:1px solid #405d72;border-radius:5px;overflow:hidden}
+.flip-card-back{transform:rotateY(180deg);display:grid;place-items:center;background:repeating-linear-gradient(135deg,#153452 0px,#153452 10px,#204b6d 10px,#204b6d 20px);font-weight:900;letter-spacing:.08em;color:#cfe7f7;font-size:clamp(.8rem,1.6vw,1.2rem)}
+.flip-card-front{background:#0c1c2d;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.flip-card-front img{width:100%;height:calc(100% - 22px);object-fit:contain;border:0;border-radius:0;box-shadow:none!important}
+.flip-name{height:22px;line-height:22px;width:100%;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:.69rem;color:#e9f3fa;padding:0 4px}
+.arcade-play:has(.card-reveal:not([hidden])) .pack-instructions{flex-shrink:0}
+@media(max-width:640px){.card-reveal{justify-content:flex-start!important}.flip-card{flex:0 0 clamp(115px,38vw,170px);height:min(39vh,258px)}}
+@media(prefers-reduced-motion:reduce){.flip-card-inner{transition:none}}
