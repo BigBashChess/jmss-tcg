@@ -144,7 +144,7 @@ a:focus-visible {
     padding-top:94px
   }
 }
-/* Authentication page layouts — visual prototypes only, no client-side password storage */
+/* Styles the sign-in and sign-up forms. */
 .auth-shell {
   min-height:calc(100vh - 170px);
   display:grid;
