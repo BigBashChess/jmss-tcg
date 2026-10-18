@@ -29,7 +29,7 @@
     const grid=document.createElement("div");grid.className="detail-stats";
     [["Attack",m.attack],["Defense",m.defense],["Stamina",m.stamina],["Power",m.power]].forEach(([label,val])=>{
       const item=document.createElement("div"),l=document.createElement("span"),v=document.createElement("strong");
-      l.textContent=label;v.textContent=val==null?"—":String(val);item.append(l,v);grid.append(item);
+      l.textContent=label;v.textContent=val==null?"N/A":String(val);item.append(l,v);grid.append(item);
     });
     const note=document.createElement("p");note.className="detail-note";note.textContent="Scores come from the spreadsheet where a clear matching variant exists. Rarity labels are temporary examples.";
     text.append(title,rarity,house,grid,note);modalBody.append(image,text);
