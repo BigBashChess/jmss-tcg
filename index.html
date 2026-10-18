@@ -52,9 +52,9 @@ html,body{height:100%;overflow:hidden}body{padding:0!important}
 @media(max-width:640px){.top-nav{height:56px}.top-nav .brand{font-size:.85rem}.nav-links{gap:2px}.nav-links a{font-size:.75rem;padding:7px}.nav-links a img{display:none}.bottom-nav{height:60px}.bottom-nav a{font-size:.73rem;padding:8px}.arcade-main{top:56px;bottom:60px;padding:8px}.arcade-hero .subtext{display:none}.pack-art{height:min(51dvh,360px)}.card-reveal{justify-content:flex-start;gap:7px}.reveal-card{flex:0 0 clamp(120px,39vw,175px)}.reveal-card img{max-height:42dvh}}
 @media(max-height:540px){.arcade-hero .subtext,.arcade-hero .eyebrow{display:none}.arcade-hero h1{font-size:1.2rem}.arcade-main{gap:3px}.pack-art{height:45dvh}.pack-progress{height:5px}.card-reveal img{max-height:36dvh}}
 </style>
-</head>
+<link rel="stylesheet" href="navigation.css"><style>.arcade-main{top:var(--nav-top-h)!important;bottom:var(--nav-bottom-h)!important}.top-nav .nav-brand{font-weight:900}</style></head>
 <body class="background">
-<nav class="top-nav" aria-label="Main navigation"><a class="brand" href="index.html">JMSS <span style="color:#F2F8FC">TCG</span></a><div class="nav-links"><a class="active" href="index.html">Packs</a><a href="collection.html?v=2">Collection</a><a href="card-index.html">Card Index</a><a href="trade.html">Trade</a><a href="sign_in_programmable.html">Sign in</a></div></nav>
+<nav id="site-top-nav"></nav>
 <main class="arcade-main">
 <section class="arcade-hero"><p class="eyebrow">JOHN MONASH SCIENCE SCHOOL</p><h1>Open Your Next Pack</h1><p class="subtext">Five cards per pack · All cards saved locally</p></section>
 <section aria-label="Pack opening" class="arcade-play">
@@ -63,7 +63,7 @@ html,body{height:100%;overflow:hidden}body{padding:0!important}
 <div class="pack-progress" role="progressbar" aria-label="Progress to pack opening" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0" id="pack-progress"><div id="pack-fill"></div></div>
 <div id="card-reveal" class="card-reveal" aria-label="Five revealed cards" hidden></div><button type="button" class="pack-reset" id="pack-reset">Open another pack</button>
 </section>
-</main><nav class="bottom-nav" aria-label="Quick navigation"><a class="active" href="index.html">🎴 Open packs</a><a href="collection.html?v=2">🗂️ My collection</a><a href="card-index.html">📖 Card Index</a><a href="trade.html">⇄ Trade</a><a href="create_your_account.html">👤 Sign up</a></nav>
+</main><nav id="site-bottom-nav"></nav>
 <script>
 (function(){
 const maxClicks=6, stage=document.getElementById('pack-stage'), button=document.getElementById('pack-button'), art=document.getElementById('pack-art'),status=document.getElementById('pack-status'),progress=document.getElementById('pack-progress'),fill=document.getElementById('pack-fill'),reset=document.getElementById('pack-reset');
@@ -121,4 +121,4 @@ button.addEventListener('click',function(){
 reset.addEventListener('click',function(){clicks=0;rot=0;opened=false;animating=false;art.src='index_images/cardpacks/common.png';art.alt='Blue JMSS TCG booster pack';art.style.transform='';button.disabled=false;stage.classList.remove('opening','opened');progress.setAttribute('aria-valuenow','0');fill.style.width='0';status.textContent='Click the pack 6 times to open it!';reset.style.display='none';reveal.hidden=true;reveal.replaceChildren();});
 })();
 </script>
-</body></html>
+<script src="navigation.js"></script></body></html>
