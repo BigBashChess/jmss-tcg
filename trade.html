@@ -35,9 +35,9 @@ body{margin:0;padding-bottom:0!important;color:#F2F8FC}
 @media(max-width:850px){.trade-layout{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) minmax(185px,36dvh);gap:8px;padding:8px}.trade-side{display:grid;grid-template-columns:1fr 1fr;gap:8px}.inventory{max-height:27dvh}.chat-log{max-height:15dvh}.trade-board{gap:6px}.trade-panel{padding:8px}.offer-slot{max-height:130px}.trade-actions button{padding:8px 12px}}
 @media(max-width:490px){.trade-top{height:49px;padding:0 9px;font-size:.83rem}.trade-layout{height:calc(100dvh - 49px);grid-template-rows:minmax(0,1fr) minmax(0,38dvh)}.trade-side{grid-template-columns:1fr 1fr;gap:6px}.side-card{padding:7px}.inventory{grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}.chat-presets{gap:3px}.chat-presets button{font-size:.64rem;padding:5px 2px}.chat-log{min-height:70px}.offer-slot{max-height:110px}.panel-head{font-size:.76rem}.panel-head small{font-size:.65rem}}
 </style>
-</head>
+<link rel="stylesheet" href="navigation.css"><style>.trade-layout{height:calc(100dvh - var(--nav-top-h) - var(--nav-bottom-h))!important;margin-top:0!important;margin-bottom:0!important}@media(max-width:490px){.trade-layout{height:calc(100dvh - var(--nav-top-h) - var(--nav-bottom-h))!important}}</style></head>
 <body class="background">
-<header class="trade-top"><a href="index.html" aria-label="Return to homepage">← Home</a><span class="room-title">⇄ TRADE ROOM</span><a href="collection.html?v=2">Collection</a><a href="card-index.html">Card Index</a><span class="pill">DEMO</span></header>
+<nav id="site-top-nav"></nav>
 <main class="trade-layout">
 <section class="trade-board" aria-label="Trading table">
 <div class="trade-panel">
@@ -70,4 +70,4 @@ document.getElementById('accept').addEventListener('click',()=>{if(!offer.length
 document.getElementById('decline').addEventListener('click',()=>{offer.splice(0);render();status.textContent='Trade declined. Your cards are unchanged.';chat('No problem!',false);});
 render();
 })();
-</script></body></html>
+</script><nav id="site-bottom-nav"></nav><script src="navigation.js"></script></body></html>
