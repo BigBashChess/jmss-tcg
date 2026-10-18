@@ -14,8 +14,8 @@
     top.className='top-nav';top.setAttribute('aria-label','Account navigation');
     const brand=document.createElement('span');brand.className='nav-brand';brand.textContent='JMSS TCG';
     const items=document.createElement('div');items.className='nav-account';
-    [['sign_in_programmable.html','Sign In','sign-in.webp'],['create_your_account.html','Sign Up','sign-up.webp']].forEach(([url,label,file])=>{
-      const a=document.createElement('a');a.href=url;a.append(icon(file),document.createTextNode(label));
+    [['sign_in_programmable.html','Sign In'],['create_your_account.html','Sign Up']].forEach(([url,label])=>{
+      const a=document.createElement('a');a.href=url;a.textContent=label;
       if(url===current)a.setAttribute('aria-current','page');items.append(a);
     });
     top.append(brand,items);
