@@ -47,7 +47,7 @@ button.addEventListener('click',function(){
  progress.setAttribute('aria-valuenow',String(clicks));fill.style.width=(clicks/maxClicks*100)+'%';
  if(clicks<maxClicks){status.textContent=(maxClicks-clicks)+' more '+(maxClicks-clicks===1?'click':'clicks')+' to open your pack!';return;}
  animating=true;button.disabled=true;status.textContent='Opening pack…';art.style.transform='';stage.classList.add('opening');
- setTimeout(function(){stage.classList.remove('opening');stage.classList.add('opened');const gold=Math.random()<0.1;art.src=gold?'index_images/cardpacks/gold.png':'index_images/cardpacks/common.png';art.alt=gold?'Special golden JMSS TCG booster pack':'Common JMSS TCG booster pack';opened=true;animating=false;status.textContent=gold?'Special Golden Pack revealed! (10% chance)':'Common Pack revealed! (90% chance)';reset.style.display='block';},2200);
+ setTimeout(function(){stage.classList.remove('opening');stage.classList.add('opened');art.src='index_images/cardpacks/common.png';art.alt='Common JMSS TCG booster pack';opened=true;animating=false;status.textContent='Pack opened! Five cards coming soon.';reset.style.display='block';},2200);
 });
 reset.addEventListener('click',function(){clicks=0;rot=0;opened=false;animating=false;art.src='index_images/cardpacks/common.png';art.alt='Blue JMSS TCG booster pack';art.style.transform='';button.disabled=false;stage.classList.remove('opening','opened');progress.setAttribute('aria-valuenow','0');fill.style.width='0';status.textContent='Click the pack 6 times to open it!';reset.style.display='none';});
 })();
