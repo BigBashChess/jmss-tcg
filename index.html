@@ -1,9 +1,12 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#101D35"><link rel="icon" href="index_images/favicon.png">
-<link rel="stylesheet" href="global.css"><title>Open a Pack | JMSS TCG</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101D35">
+<link rel="icon" href="index_images/favicon.png">
+<link rel="stylesheet" href="global.css">
+<title>Open a Pack | JMSS TCG</title>
 <style>
 .pack-stage{display:grid;place-items:center;min-height:425px;position:relative;isolation:isolate;overflow:hidden}
 .pack-stage::before{content:"";position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,#3caee84a,transparent 65%);filter:blur(20px);z-index:-1}
@@ -52,18 +55,54 @@ html,body{height:100%;overflow:hidden}body{padding:0!important}
 @media(max-width:640px){.top-nav{height:56px}.top-nav .brand{font-size:.85rem}.nav-links{gap:2px}.nav-links a{font-size:.75rem;padding:7px}.nav-links a img{display:none}.bottom-nav{height:60px}.bottom-nav a{font-size:.73rem;padding:8px}.arcade-main{top:56px;bottom:60px;padding:8px}.arcade-hero .subtext{display:none}.pack-art{height:min(51dvh,360px)}.card-reveal{justify-content:flex-start;gap:7px}.reveal-card{flex:0 0 clamp(120px,39vw,175px)}.reveal-card img{max-height:42dvh}}
 @media(max-height:540px){.arcade-hero .subtext,.arcade-hero .eyebrow{display:none}.arcade-hero h1{font-size:1.2rem}.arcade-main{gap:3px}.pack-art{height:45dvh}.pack-progress{height:5px}.card-reveal img{max-height:36dvh}}
 </style>
-<link rel="stylesheet" href="navigation.css"><style>.arcade-main{top:var(--nav-top-h)!important;bottom:var(--nav-bottom-h)!important}.top-nav .nav-brand{font-weight:900}</style><link rel="stylesheet" href="design.css"><link rel="stylesheet" href="pack-opening.css"></head>
+<link rel="stylesheet" href="navigation.css">
+<style>.arcade-main{top:var(--nav-top-h)!important;bottom:var(--nav-bottom-h)!important}.top-nav .nav-brand{font-weight:900}</style>
+<link rel="stylesheet" href="design.css">
+<link rel="stylesheet" href="pack-opening.css">
+</head>
 <body class="background">
-<nav id="site-top-nav"></nav>
+<nav id="site-top-nav">
+</nav>
 <main class="arcade-main">
-<section class="arcade-hero"><p class="eyebrow">JOHN MONASH SCIENCE SCHOOL</p><h1>New card pack available</h1></section>
-<section aria-label="Pack opening" class="arcade-play">
-<div class="pack-stage" id="pack-stage"><button type="button" id="pack-button" class="pack-click" aria-label="Rotate the JMSS card pack"><img id="pack-art" class="pack-art" src="index_images/cardpacks/common.png" alt="Blue JMSS TCG booster pack"></button></div>
-<p id="pack-status" class="pack-instructions" aria-live="polite">Keep clicking the pack to open it!</p>
-<div class="pack-progress" role="progressbar" aria-label="Progress to pack opening" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0" id="pack-progress"><div id="pack-fill"></div></div>
-<div id="card-reveal" class="card-reveal" aria-label="Five revealed cards" hidden></div><div class="reveal-controls"><span id="reveal-counter" aria-live="polite"></span><button type="button" id="skip-reveal" hidden>Reveal all cards</button></div><p id="reveal-summary" hidden data-saved="false">Cards added to your collection. <a href="collection.html" style="color:#8dcbe6">View collection →</a></p><button type="button" class="pack-reset" id="pack-reset">Open another pack</button>
+<section class="arcade-hero">
+<p class="eyebrow">JOHN MONASH SCIENCE SCHOOL</p>
+<h1>New card pack available</h1>
 </section>
-</main><dialog id="card-detail" class="card-detail-dialog"><form method="dialog"><button class="card-detail-close" aria-label="Close card details">Close ×</button></form><div id="card-detail-body" class="card-detail-body"></div></dialog><nav id="site-bottom-nav"></nav>
-<script src="pack-opening.js" defer></script>
-
-<script src="navigation.js"></script></body></html>
+<section aria-label="Pack opening" class="arcade-play">
+<div class="pack-stage" id="pack-stage">
+<button type="button" id="pack-button" class="pack-click" aria-label="Rotate the JMSS card pack">
+<img id="pack-art" class="pack-art" src="index_images/cardpacks/common.png" alt="Blue JMSS TCG booster pack">
+</button>
+</div>
+<p id="pack-status" class="pack-instructions" aria-live="polite">Keep clicking the pack to open it!</p>
+<div class="pack-progress" role="progressbar" aria-label="Progress to pack opening" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0" id="pack-progress">
+<div id="pack-fill">
+</div>
+</div>
+<div id="card-reveal" class="card-reveal" aria-label="Five revealed cards" hidden>
+</div>
+<div class="reveal-controls">
+<span id="reveal-counter" aria-live="polite">
+</span>
+<button type="button" id="skip-reveal" hidden>Reveal all cards</button>
+</div>
+<p id="reveal-summary" hidden data-saved="false">Cards added to your collection. <a href="collection.html" style="color:#8dcbe6">View collection →</a>
+</p>
+<button type="button" class="pack-reset" id="pack-reset">Open another pack</button>
+</section>
+</main>
+<dialog id="card-detail" class="card-detail-dialog">
+<form method="dialog">
+<button class="card-detail-close" aria-label="Close card details">Close ×</button>
+</form>
+<div id="card-detail-body" class="card-detail-body">
+</div>
+</dialog>
+<nav id="site-bottom-nav">
+</nav>
+<script src="pack-opening.js" defer>
+</script>
+<script src="navigation.js">
+</script>
+</body>
+</html>
