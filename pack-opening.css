@@ -1,4 +1,4 @@
-/* Pack opening: five individually revealed cards */
+/* Animates five cards flipping over one at a time. */
 .pack-stage[hidden],.card-reveal[hidden],#skip-reveal[hidden],#reveal-summary[hidden],.pack-progress[hidden] {
   display:none!important
 }
@@ -123,7 +123,7 @@
     transition:none
   }
 }
-/* Temporary demo rarity visual treatments */
+/* Highlights revealed cards according to rarity. */
 .flip-card {
   appearance:none;
   background:none;
