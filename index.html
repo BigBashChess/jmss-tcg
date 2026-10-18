@@ -64,7 +64,7 @@ function showCards(){
  reveal.replaceChildren();
  shuffled.slice(0,5).forEach(([name,file],i)=>{
    const el=document.createElement('div');el.className='reveal-card';el.style.animationDelay=(i*0.12)+'s';
-   const img=document.createElement('img');img.src='cards/'+file;img.alt=name;img.loading='lazy';
+   const img=document.createElement('img');img.src=file;img.alt=name;img.loading='lazy';
    img.addEventListener('error',()=>{const fallback=document.createElement('div');fallback.className='missing-card';fallback.textContent=name+' — image awaiting upload';img.replaceWith(fallback);});
    el.append(img);reveal.append(el);
  });reveal.hidden=false;
