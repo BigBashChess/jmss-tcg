@@ -63,7 +63,7 @@ html,body{height:100%;overflow:hidden}body{padding:0!important}
 <div class="pack-progress" role="progressbar" aria-label="Progress to pack opening" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0" id="pack-progress"><div id="pack-fill"></div></div>
 <div id="card-reveal" class="card-reveal" aria-label="Five revealed cards" hidden></div><div class="reveal-controls"><span id="reveal-counter" aria-live="polite"></span><button type="button" id="skip-reveal" hidden>Reveal all cards</button></div><p id="reveal-summary" hidden data-saved="false">Cards added to your collection. <a href="collection.html" style="color:#8dcbe6">View collection →</a></p><button type="button" class="pack-reset" id="pack-reset">Open another pack</button>
 </section>
-</main><nav id="site-bottom-nav"></nav>
+</main><dialog id="card-detail" class="card-detail-dialog"><form method="dialog"><button class="card-detail-close" aria-label="Close card details">Close ×</button></form><div id="card-detail-body" class="card-detail-body"></div></dialog><nav id="site-bottom-nav"></nav>
 <script src="pack-opening.js" defer></script>
 
 <script src="navigation.js"></script></body></html>
