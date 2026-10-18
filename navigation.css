@@ -1,0 +1,15 @@
+/* Shared navigation on all JMSS TCG pages */
+:root{--nav-top-h:60px;--nav-bottom-h:64px}
+body{padding-top:var(--nav-top-h);padding-bottom:var(--nav-bottom-h)}
+.top-nav,.bottom-nav{position:fixed!important;left:0;right:0;width:100%;z-index:2000;display:flex!important;align-items:center;justify-content:space-between;background:#183B63;box-sizing:border-box}
+.top-nav{top:0!important;height:var(--nav-top-h)!important;padding:0 clamp(12px,3vw,32px)!important;border-bottom:1px solid #3C7194}
+.bottom-nav{top:auto!important;bottom:0!important;height:var(--nav-bottom-h)!important;padding:6px clamp(8px,3vw,28px)!important;border-top:1px solid #3C7194;gap:8px}
+.top-nav .nav-brand{color:#65D6F4;font-weight:900;letter-spacing:.08em;white-space:nowrap;font-size:1.04rem}
+.top-nav .nav-account{display:flex;gap:8px;align-items:center}
+.top-nav a,.bottom-nav a{color:#F2F8FC;text-decoration:none;font-weight:700}
+.top-nav .nav-account a{padding:9px 13px;border:1px solid #45759A;border-radius:10px;font-size:.82rem;white-space:nowrap}
+.top-nav .nav-account a:last-child{background:#1976B9;border-color:#65D6F4}
+.bottom-nav a{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;min-width:0;border-radius:10px;padding:10px 6px;font-size:.9rem;white-space:nowrap}
+.top-nav a:hover,.bottom-nav a:hover,.bottom-nav a[aria-current="page"]{background:#25658D;color:#fff}
+.nav-icon{font-size:1.1em}
+@media(max-width:520px){:root{--nav-top-h:54px;--nav-bottom-h:60px}.top-nav .nav-brand{font-size:.89rem}.top-nav .nav-account a{font-size:.73rem;padding:8px 9px}.bottom-nav{gap:2px;padding:5px!important}.bottom-nav a{font-size:.71rem;gap:3px;padding:8px 2px}.nav-icon{font-size:1em}}
