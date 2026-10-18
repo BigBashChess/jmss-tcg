@@ -1,0 +1,43 @@
+/* JMSS TCG visual system — restrained arcade styling */
+:root{--bg:#0b1628;--surface:#142a43;--primary:#287bad;--accent:#8dcbe6;--text:#edf3f7;--muted:#9aaec0;--border:#38536c;--gold:#efc36d}
+html{color-scheme:dark}
+body.background{background:#0b1628!important;color:#edf3f7;background-image:linear-gradient(90deg,transparent 49.9%,rgba(112,156,188,.035) 50%,transparent 50.1%)!important;background-size:80px 80px}
+body{font-family:Inter,"Segoe UI",Arial,sans-serif!important}
+.top-nav,.bottom-nav{background:#142a43!important;border-color:#314d65!important;box-shadow:none!important;backdrop-filter:none!important}
+.top-nav .nav-brand{font-weight:850!important;letter-spacing:.045em!important;color:#dcecf6!important}
+.top-nav .nav-account a,.bottom-nav a{border-radius:5px!important;transition:background .14s ease!important}
+.top-nav .nav-account a:last-child{background:#276f9a!important;border-color:#327ea9!important}
+.top-nav a:hover,.bottom-nav a:hover,.bottom-nav a[aria-current="page"]{background:#24445f!important}
+.site-main{max-width:1120px!important}
+.hero h1,.arcade-hero h1{font-weight:750!important;letter-spacing:-.035em!important;line-height:1.08!important}
+.eyebrow{letter-spacing:.12em!important;color:#89c4e1!important;font-weight:750!important}
+.subtext,.collection-empty{color:#a1b4c5!important}
+.button,.pack-reset{border:1px solid #47738f!important;background:#1a4769!important;color:#eff6fb!important;border-radius:5px!important;box-shadow:none!important;transition:background .15s ease!important}
+.button:hover,.pack-reset:hover{background:#276f9a!important}
+.collection-stat{border-radius:5px!important;background:#132b44!important;border:1px solid #2c4c64!important;box-shadow:none!important}
+.collection-stat strong{color:#d8eef9!important}
+.collection-card{border-radius:5px!important;background:#13263b!important;border:1px solid #294761!important;box-shadow:none!important;padding:7px!important}
+.collection-card img{border-radius:2px!important}
+.collection-card .count{border-radius:4px!important;background:#e5b962!important;box-shadow:none!important}
+.collection-grid{gap:14px!important}
+.collection-card .card-title{font-weight:650!important}
+.auth-card{border-radius:6px!important;background:#132a42!important;border:1px solid #36536a!important;box-shadow:none!important}
+.auth-card input{border-radius:4px!important;background:#0c1d30!important;border-color:#47647b!important}
+.auth-card button{border-radius:4px!important}
+.auth-notice{border-radius:4px!important}
+.pack-stage::before{background:radial-gradient(circle,rgba(30,91,143,.19),transparent 70%)!important;filter:blur(12px)!important}
+.pack-stage.opened .pack-art{filter:drop-shadow(0 6px 15px #0009)!important}
+.pack-art{filter:drop-shadow(0 12px 16px #0009)!important}
+.pack-progress{background:#1e3b55!important;border-radius:2px!important}
+.pack-progress div{background:#80beda!important;border-radius:2px!important}
+.reveal-card img{border-radius:2px!important;box-shadow:0 8px 22px #0008!important}
+.trade-panel,.trade-panel.mine{border-radius:6px!important;background:#173553!important;border-color:#365d79!important}
+.trade-panel.mine{background:#122d48!important}
+.offer-slot{border-radius:5px!important;background:#0c2137!important;border-color:#5b849f!important}
+.trade-actions button,.chat-presets button,.side-card,.chat-log,.chat-msg,.chat-msg.mine,.inventory button{border-radius:5px!important}
+.side-card{background:#122a43!important;border-color:#2f506c!important}
+.chat-msg{background:#25445e!important}.chat-msg.mine{background:#245e78!important}
+.chat-presets button{background:#1c405f!important}
+.inventory button{background:#193a56!important}
+.trade-actions .accept{background:#276957!important}.trade-actions .decline{background:#6a395d!important}
+@media(max-width:560px){.collection-grid{gap:9px!important}.collection-card{padding:5px!important}.site-main{padding-left:13px!important;padding-right:13px!important}.arcade-main{padding:7px!important}}
