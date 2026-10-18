@@ -1,0 +1,146 @@
+{
+  "flush-sac-anderson.webp": {
+    "rarity": "Legendary",
+    "house": "Flannery",
+    "attack": 90,
+    "defense": 92,
+    "stamina": 94,
+    "power": 92,
+    "demoRarity": true
+  },
+  "algorithm-albrecht.webp": {
+    "rarity": "Divine",
+    "house": null,
+    "attack": null,
+    "defense": null,
+    "stamina": null,
+    "power": null,
+    "demoRarity": true
+  },
+  "stephen-finchy.webp": {
+    "rarity": "Rare",
+    "house": "Flannery",
+    "attack": 85,
+    "defense": 90,
+    "stamina": 95,
+    "power": 90,
+    "demoRarity": true
+  },
+  "peter-thompson.webp": {
+    "rarity": "Rare",
+    "house": "Doherty",
+    "attack": 83,
+    "defense": 89,
+    "stamina": 98,
+    "power": 90,
+    "demoRarity": true
+  },
+  "vincenzo-piscioneri.webp": {
+    "rarity": "Legendary",
+    "house": "Doherty",
+    "attack": 82,
+    "defense": 99,
+    "stamina": 89,
+    "power": 90,
+    "demoRarity": true
+  },
+  "romanian-gavrilescu.webp": {
+    "rarity": "Mythic",
+    "house": "Wood",
+    "attack": 82,
+    "defense": 94,
+    "stamina": 94,
+    "power": 90,
+    "demoRarity": true
+  },
+  "rimkevicius.webp": {
+    "rarity": "Rare",
+    "house": "Doherty",
+    "attack": 87,
+    "defense": 98,
+    "stamina": 85,
+    "power": 90,
+    "demoRarity": true
+  },
+  "scott-chittleborough.webp": {
+    "rarity": "Rare",
+    "house": "Flannery",
+    "attack": 83,
+    "defense": 93,
+    "stamina": 94,
+    "power": 90,
+    "demoRarity": true
+  },
+  "kermond.webp": {
+    "rarity": "Legendary",
+    "house": "Flannery",
+    "attack": 72,
+    "defense": 99,
+    "stamina": 99,
+    "power": 90,
+    "demoRarity": true
+  },
+  "rainy-xia.webp": {
+    "rarity": "Mythic",
+    "house": "Wood",
+    "attack": 84,
+    "defense": 98,
+    "stamina": 94,
+    "power": 92,
+    "demoRarity": true
+  },
+  "sunny-xia.webp": {
+    "rarity": "Rare",
+    "house": "Wood",
+    "attack": 80,
+    "defense": 94,
+    "stamina": 96,
+    "power": 90,
+    "demoRarity": true
+  },
+  "muppet-finchy.webp": {
+    "rarity": "Mythic",
+    "house": null,
+    "attack": null,
+    "defense": null,
+    "stamina": null,
+    "power": null,
+    "demoRarity": true
+  },
+  "dr-driscoll.webp": {
+    "rarity": "Legendary",
+    "house": "Doherty",
+    "attack": 72,
+    "defense": 99,
+    "stamina": 99,
+    "power": 90,
+    "demoRarity": true
+  },
+  "danger-grainger.webp": {
+    "rarity": "Legendary",
+    "house": "Doherty",
+    "attack": 81,
+    "defense": 93,
+    "stamina": 96,
+    "power": 90,
+    "demoRarity": true
+  },
+  "gen-z-clarke.webp": {
+    "rarity": "Mythic",
+    "house": "Wood",
+    "attack": 91,
+    "defense": 80,
+    "stamina": 99,
+    "power": 92,
+    "demoRarity": true
+  },
+  "bonehead-kermond.webp": {
+    "rarity": "Divine",
+    "house": "Flannery",
+    "attack": 91,
+    "defense": 93,
+    "stamina": 92,
+    "power": 92,
+    "demoRarity": true
+  }
+}
