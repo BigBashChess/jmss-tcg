@@ -52,7 +52,7 @@ html,body{height:100%;overflow:hidden}body{padding:0!important}
 @media(max-width:640px){.top-nav{height:56px}.top-nav .brand{font-size:.85rem}.nav-links{gap:2px}.nav-links a{font-size:.75rem;padding:7px}.nav-links a img{display:none}.bottom-nav{height:60px}.bottom-nav a{font-size:.73rem;padding:8px}.arcade-main{top:56px;bottom:60px;padding:8px}.arcade-hero .subtext{display:none}.pack-art{height:min(51dvh,360px)}.card-reveal{justify-content:flex-start;gap:7px}.reveal-card{flex:0 0 clamp(120px,39vw,175px)}.reveal-card img{max-height:42dvh}}
 @media(max-height:540px){.arcade-hero .subtext,.arcade-hero .eyebrow{display:none}.arcade-hero h1{font-size:1.2rem}.arcade-main{gap:3px}.pack-art{height:45dvh}.pack-progress{height:5px}.card-reveal img{max-height:36dvh}}
 </style>
-<link rel="stylesheet" href="navigation.css"><style>.arcade-main{top:var(--nav-top-h)!important;bottom:var(--nav-bottom-h)!important}.top-nav .nav-brand{font-weight:900}</style><link rel="stylesheet" href="design.css"></head>
+<link rel="stylesheet" href="navigation.css"><style>.arcade-main{top:var(--nav-top-h)!important;bottom:var(--nav-bottom-h)!important}.top-nav .nav-brand{font-weight:900}</style><link rel="stylesheet" href="design.css"><link rel="stylesheet" href="pack-opening.css"></head>
 <body class="background">
 <nav id="site-top-nav"></nav>
 <main class="arcade-main">
@@ -61,64 +61,9 @@ html,body{height:100%;overflow:hidden}body{padding:0!important}
 <div class="pack-stage" id="pack-stage"><button type="button" id="pack-button" class="pack-click" aria-label="Rotate the JMSS card pack"><img id="pack-art" class="pack-art" src="index_images/cardpacks/common.png" alt="Blue JMSS TCG booster pack"></button></div>
 <p id="pack-status" class="pack-instructions" aria-live="polite">Keep clicking the pack to open it!</p>
 <div class="pack-progress" role="progressbar" aria-label="Progress to pack opening" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0" id="pack-progress"><div id="pack-fill"></div></div>
-<div id="card-reveal" class="card-reveal" aria-label="Five revealed cards" hidden></div><button type="button" class="pack-reset" id="pack-reset">Open another pack</button>
+<div id="card-reveal" class="card-reveal" aria-label="Five revealed cards" hidden></div><div class="reveal-controls"><span id="reveal-counter" aria-live="polite"></span><button type="button" id="skip-reveal" hidden>Reveal all cards</button></div><p id="reveal-summary" hidden data-saved="false">Cards added to your collection. <a href="collection.html" style="color:#8dcbe6">View collection →</a></p><button type="button" class="pack-reset" id="pack-reset">Open another pack</button>
 </section>
 </main><nav id="site-bottom-nav"></nav>
-<script>
-(function(){
-const maxClicks=6, stage=document.getElementById('pack-stage'), button=document.getElementById('pack-button'), art=document.getElementById('pack-art'),status=document.getElementById('pack-status'),progress=document.getElementById('pack-progress'),fill=document.getElementById('pack-fill'),reset=document.getElementById('pack-reset');
-const cards=[
-["Flush Sac Anderson","flush-sac-anderson.webp"],
-["Algorithm Albrecht","algorithm-albrecht.webp"],
-["Stephen Finchy","stephen-finchy.webp"],
-["Peter Thompson","peter-thompson.webp"],
-["Vincenzo Piscioneri","vincenzo-piscioneri.webp"],
-["Romanian Gavrilescu","romanian-gavrilescu.webp"],
-["Rimkevicius","rimkevicius.webp"],
-["Scott Chittleborough","scott-chittleborough.webp"],
-["Kermond","kermond.webp"],
-["Rainy Xia","rainy-xia.webp"],
-["Sunny Xia","sunny-xia.webp"],
-["Muppet Finchy","muppet-finchy.webp"],
-["Dr Driscoll","dr-driscoll.webp"],
-["Danger Grainger","danger-grainger.webp"],
-["Gen Z Clarke","gen-z-clarke.webp"],
-["Bonehead Kermond","bonehead-kermond.webp"]
-];
-const reveal=document.getElementById('card-reveal');
-function saveCards(selected){
- const key='jmss-tcg-collection-v1';
- let inventory={};
- try{const parsed=JSON.parse(localStorage.getItem(key)||'{}');if(parsed&&typeof parsed==='object'&&!Array.isArray(parsed))inventory=parsed;}catch(e){}
- for(const [,file] of selected){const count=Number(inventory[file]);inventory[file]=(Number.isSafeInteger(count)&&count>=0?count:0)+1;}
- try{localStorage.setItem(key,JSON.stringify(inventory));return true;}catch(e){return false;}
-}
-function showCards(){
- const shuffled=[...cards];
- for(let i=shuffled.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]];}
- const selected=shuffled.slice(0,5);
- const saved=saveCards(selected);
- status.textContent=saved?"Your five cards have been saved to your Collection!":"Your five cards! Local saving is unavailable in this browser.";
- reveal.replaceChildren();
- selected.forEach(([name,file],i)=>{
-   const el=document.createElement('div');el.className='reveal-card';el.style.animationDelay=(i*0.12)+'s';
-   const img=document.createElement('img');img.src='cards/'+file;img.alt=name;img.loading='lazy';
-   img.addEventListener('error',()=>{const fallback=document.createElement('div');fallback.className='missing-card';fallback.textContent=name+' — image awaiting upload';img.replaceWith(fallback);});
-   el.append(img);reveal.append(el);
- });reveal.hidden=false;
-}
-let clicks=0,rot=0,animating=false,opened=false;
-button.addEventListener('click',function(){
- if(animating||opened)return;
- clicks++;rot+=360;
- art.style.transform='rotateY('+rot+'deg) scale(1.06)';
- setTimeout(()=>{if(!animating&&!opened)art.style.transform='rotateY('+rot+'deg)'},350);
- progress.setAttribute('aria-valuenow',String(clicks));fill.style.width=(clicks/maxClicks*100)+'%';
- if(clicks<maxClicks){status.textContent=(maxClicks-clicks)+' more '+(maxClicks-clicks===1?'click':'clicks')+' to open your pack!';return;}
- animating=true;button.disabled=true;status.textContent='Opening pack…';art.style.transform='';stage.classList.add('opening');
- setTimeout(function(){stage.classList.remove('opening');stage.classList.add('opened');art.src='index_images/cardpacks/common.png';art.alt='Common JMSS TCG booster pack';opened=true;animating=false;status.textContent='Your five cards!';showCards();reset.style.display='block';},2200);
-});
-reset.addEventListener('click',function(){clicks=0;rot=0;opened=false;animating=false;art.src='index_images/cardpacks/common.png';art.alt='Blue JMSS TCG booster pack';art.style.transform='';button.disabled=false;stage.classList.remove('opening','opened');progress.setAttribute('aria-valuenow','0');fill.style.width='0';status.textContent='Keep clicking the pack to open it!';reset.style.display='none';reveal.hidden=true;reveal.replaceChildren();});
-})();
-</script>
+<script src="pack-opening.js" defer></script>
+
 <script src="navigation.js"></script></body></html>
