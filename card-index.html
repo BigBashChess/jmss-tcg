@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101D35"><link rel="icon" href="index_images/favicon.png"><link rel="stylesheet" href="global.css"><title>Card Index | JMSS TCG</title>
+<style>
+.collection-summary{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin:24px 0}
+.collection-stat{background:#183B63;border:1px solid #34688D;border-radius:13px;padding:15px 26px;min-width:150px}
+.collection-stat strong{font-size:1.7rem;color:#65D6F4;display:block}
+.collection-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:18px;margin:28px auto;max-width:1050px}
+.collection-card{position:relative;background:#183B63;border:1px solid #34688D;border-radius:14px;padding:9px;min-width:0}
+.collection-card img{width:100%;height:auto;display:block;border-radius:8px}
+.collection-card .count{position:absolute;right:3px;top:3px;background:#f4c45b;color:#101D35;font-weight:800;border-radius:999px;padding:5px 9px;box-shadow:0 2px 9px #0008}
+.collection-card .card-title{font-size:.79rem;line-height:1.35;margin:10px 2px 2px;color:#f2f8fc}
+.collection-card.locked{background:#06080D;border-color:#414A5C}.collection-card.locked img{opacity:0}.collection-card.locked::before{content:'?';position:absolute;top:9px;left:9px;right:9px;bottom:42px;background:#050507;color:white;border-radius:8px;display:grid;place-items:center;font-size:clamp(3rem,6vw,6rem);font-weight:900}.collection-card.locked .card-title{color:#F2F8FC}
+.collection-card.locked .count{background:#405269;color:white}
+.collection-empty{color:#9AB2C7;text-align:center;margin:18px auto}
+@media(max-width:480px){.collection-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
+</style></head>
+<body class="background">
+<nav class="top-nav" aria-label="Main navigation"><a href="index.html"><img src="index_images/home_icon.png" alt="">Home</a><a href="collection.html"><img src="index_images/collection_icon.png" alt="">Collection</a></nav>
+<main class="site-main"><section class="hero"><p class="eyebrow">JMSS TRADING CARD GAME</p><h1>Card Index</h1><p class="subtext">Discover all 16 possible cards. Unowned cards remain a mystery.</p>
+<div class="collection-summary"><div class="collection-stat"><strong id="unique-count">0 / 16</strong>Unique cards</div><div class="collection-stat"><strong id="total-count">0</strong>Total cards owned</div></div><p id="collection-notice" class="collection-empty" aria-live="polite"></p>
+<a class="button" href="index.html">Open packs</a> <a class="button" href="collection.html">My Collection</a></section><section id="collection-grid" class="collection-grid" aria-label="Card Index"></section></main>
+<nav class="bottom-nav"><a href="index.html">Home</a><a href="collection.html">Collection</a><a href="card-index.html">Card Index</a><a href="trade.html">Trade</a></nav>
+<script>
+(function(){
+const cards=[
+["Flush Sac Anderson","flush-sac-anderson.webp"],["Algorithm Albrecht","algorithm-albrecht.webp"],["Stephen Finchy","stephen-finchy.webp"],["Peter Thompson","peter-thompson.webp"],["Vincenzo Piscioneri","vincenzo-piscioneri.webp"],["Romanian Gavrilescu","romanian-gavrilescu.webp"],["Rimkevicius","rimkevicius.webp"],["Scott Chittleborough","scott-chittleborough.webp"],["Kermond","kermond.webp"],["Rainy Xia","rainy-xia.webp"],["Sunny Xia","sunny-xia.webp"],["Muppet Finchy","muppet-finchy.webp"],["Dr Driscoll","dr-driscoll.webp"],["Danger Grainger","danger-grainger.webp"],["Gen Z Clarke","gen-z-clarke.webp"],["Bonehead Kermond","bonehead-kermond.webp"]
+];
+let inventory={};
+try{const parsed=JSON.parse(localStorage.getItem('jmss-tcg-collection-v1')||'{}');if(parsed&&typeof parsed==='object'&&!Array.isArray(parsed))inventory=parsed;}catch(e){document.getElementById('collection-notice').textContent='Could not read saved cards in this browser.';}
+const countFor=file=>{const n=Number(inventory[file]);return Number.isSafeInteger(n)&&n>0?n:0;};
+let total=0,unique=0;
+const grid=document.getElementById('collection-grid');
+cards.forEach(([name,file])=>{
+ const quantity=countFor(file);total+=quantity;if(quantity)unique++;
+ const tile=document.createElement('article');tile.className='collection-card'+(quantity?'':' locked');
+ const badge=document.createElement('span');badge.className='count';badge.textContent=quantity?'×'+quantity:'?';
+ const img=document.createElement('img');img.src='cards/'+file;img.alt=name;img.loading='lazy';
+ const caption=document.createElement('div');caption.className='card-title';caption.textContent=quantity?name:'Unknown card';
+ tile.append(img,badge,caption);grid.append(tile);
+});
+document.getElementById('unique-count').textContent=unique+' / '+cards.length;
+document.getElementById('total-count').textContent=total.toLocaleString();
+if(!total)document.getElementById('collection-notice').textContent='Open packs to discover your first card!';
+})();
+</script></body></html>
