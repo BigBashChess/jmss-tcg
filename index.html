@@ -27,7 +27,7 @@
 @media(prefers-reduced-motion:reduce){.pack-art{transition:none}.pack-stage.opening .pack-art,.pack-stage.opening::after{animation:none}}
 .card-reveal{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:16px;max-width:1050px;margin:28px auto 12px;text-align:center}.card-reveal[hidden]{display:none}.reveal-card{animation:cardRise .55s ease both;min-width:0}.reveal-card img{display:block;width:100%;max-width:230px;margin:auto;border-radius:9px;box-shadow:0 12px 26px #0008}.reveal-card .missing-card{padding:25px 8px;border:1px solid #65D6F4;border-radius:10px;color:#9AB2C7}.pack-stage.opened{display:none}@keyframes cardRise{from{opacity:0;transform:translateY(30px) scale(.90)}to{opacity:1;transform:translateY(0) scale(1)}}@media(prefers-reduced-motion:reduce){.reveal-card{animation:none}} 
 
-/* Single-screen arcade home */
+/* Keeps pack opening within the available screen. */
 html,body{height:100%;overflow:hidden}body{padding:0!important}
 .top-nav{height:66px;padding:0 max(14px,3vw);gap:10px;justify-content:space-between}
 .top-nav .brand{font-weight:900;letter-spacing:.07em;color:#65D6F4;white-space:nowrap}
