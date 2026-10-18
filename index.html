@@ -56,10 +56,10 @@ html,body{height:100%;overflow:hidden}body{padding:0!important}
 <body class="background">
 <nav id="site-top-nav"></nav>
 <main class="arcade-main">
-<section class="arcade-hero"><p class="eyebrow">JOHN MONASH SCIENCE SCHOOL</p><h1>Open Your Next Pack</h1><p class="subtext">Five cards per pack · All cards saved locally</p></section>
+<section class="arcade-hero"><p class="eyebrow">JOHN MONASH SCIENCE SCHOOL</p><h1>New card pack available</h1></section>
 <section aria-label="Pack opening" class="arcade-play">
 <div class="pack-stage" id="pack-stage"><button type="button" id="pack-button" class="pack-click" aria-label="Rotate the JMSS card pack"><img id="pack-art" class="pack-art" src="index_images/cardpacks/common.png" alt="Blue JMSS TCG booster pack"></button></div>
-<p id="pack-status" class="pack-instructions" aria-live="polite">Click the pack 6 times to open it!</p>
+<p id="pack-status" class="pack-instructions" aria-live="polite">Keep clicking the pack to open it!</p>
 <div class="pack-progress" role="progressbar" aria-label="Progress to pack opening" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0" id="pack-progress"><div id="pack-fill"></div></div>
 <div id="card-reveal" class="card-reveal" aria-label="Five revealed cards" hidden></div><button type="button" class="pack-reset" id="pack-reset">Open another pack</button>
 </section>
@@ -118,7 +118,7 @@ button.addEventListener('click',function(){
  animating=true;button.disabled=true;status.textContent='Opening pack…';art.style.transform='';stage.classList.add('opening');
  setTimeout(function(){stage.classList.remove('opening');stage.classList.add('opened');art.src='index_images/cardpacks/common.png';art.alt='Common JMSS TCG booster pack';opened=true;animating=false;status.textContent='Your five cards!';showCards();reset.style.display='block';},2200);
 });
-reset.addEventListener('click',function(){clicks=0;rot=0;opened=false;animating=false;art.src='index_images/cardpacks/common.png';art.alt='Blue JMSS TCG booster pack';art.style.transform='';button.disabled=false;stage.classList.remove('opening','opened');progress.setAttribute('aria-valuenow','0');fill.style.width='0';status.textContent='Click the pack 6 times to open it!';reset.style.display='none';reveal.hidden=true;reveal.replaceChildren();});
+reset.addEventListener('click',function(){clicks=0;rot=0;opened=false;animating=false;art.src='index_images/cardpacks/common.png';art.alt='Blue JMSS TCG booster pack';art.style.transform='';button.disabled=false;stage.classList.remove('opening','opened');progress.setAttribute('aria-valuenow','0');fill.style.width='0';status.textContent='Keep clicking the pack to open it!';reset.style.display='none';reveal.hidden=true;reveal.replaceChildren();});
 })();
 </script>
 <script src="navigation.js"></script></body></html>
