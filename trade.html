@@ -35,13 +35,13 @@ body{margin:0;padding-bottom:0!important;color:#F2F8FC}
 @media(max-width:850px){.trade-layout{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) minmax(185px,36dvh);gap:8px;padding:8px}.trade-side{display:grid;grid-template-columns:1fr 1fr;gap:8px}.inventory{max-height:27dvh}.chat-log{max-height:15dvh}.trade-board{gap:6px}.trade-panel{padding:8px}.offer-slot{max-height:130px}.trade-actions button{padding:8px 12px}}
 @media(max-width:490px){.trade-top{height:49px;padding:0 9px;font-size:.83rem}.trade-layout{height:calc(100dvh - 49px);grid-template-rows:minmax(0,1fr) minmax(0,38dvh)}.trade-side{grid-template-columns:1fr 1fr;gap:6px}.side-card{padding:7px}.inventory{grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}.chat-presets{gap:3px}.chat-presets button{font-size:.64rem;padding:5px 2px}.chat-log{min-height:70px}.offer-slot{max-height:110px}.panel-head{font-size:.76rem}.panel-head small{font-size:.65rem}}
 </style>
-<link rel="stylesheet" href="navigation.css"><style>.trade-layout{height:calc(100dvh - var(--nav-top-h) - var(--nav-bottom-h))!important;margin-top:0!important;margin-bottom:0!important}@media(max-width:490px){.trade-layout{height:calc(100dvh - var(--nav-top-h) - var(--nav-bottom-h))!important}}</style></head>
+<link rel="stylesheet" href="navigation.css"><style>.trade-layout{height:calc(100dvh - var(--nav-top-h) - var(--nav-bottom-h))!important;margin-top:0!important;margin-bottom:0!important}@media(max-width:490px){.trade-layout{height:calc(100dvh - var(--nav-top-h) - var(--nav-bottom-h))!important}}</style><link rel="stylesheet" href="design.css"></head>
 <body class="background">
 <nav id="site-top-nav"></nav>
 <main class="trade-layout">
 <section class="trade-board" aria-label="Trading table">
 <div class="trade-panel">
-<div class="panel-head"><span>🤖 Demo partner's offer</span><small>Example cards — not a real player</small></div>
+<div class="panel-head"><span>🤖 Demo partner's offer</span><small>Simulated player</small></div>
 <div class="offer-list" id="partner-offer"></div>
 </div>
 <div><div class="trade-actions"><button class="accept" type="button" id="accept">✓ Accept</button><button class="decline" type="button" id="decline">✕ Decline</button></div><div class="trade-toast" id="trade-status" role="status" aria-live="polite">Select up to 3 cards from your collection</div></div>
