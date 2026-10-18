@@ -66,7 +66,7 @@ for(const card of records){
  const tile=document.createElement('article');tile.className='collection-card'+(owned?'':' locked');
  const badge=document.createElement('span');badge.className='count';badge.textContent=owned?'×'+count:'?';
  const img=document.createElement('img');img.alt=owned?card.name:'Undiscovered card';img.loading='lazy';
- // Never request hidden artwork for undiscovered entries.
+ // Hides artwork until the card is collected.
  if(owned)img.src='cards/'+card.image;
  const caption=document.createElement('div');caption.className='card-title';
  caption.textContent=owned?(card.name+(card.subtitle?' — '+card.subtitle:'')):'Unknown card';
