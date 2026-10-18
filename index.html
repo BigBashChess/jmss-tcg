@@ -58,11 +58,21 @@ const cards=[
 ["Bonehead Kermond","bonehead-kermond.webp"]
 ];
 const reveal=document.getElementById('card-reveal');
+function saveCards(selected){
+ const key='jmss-tcg-collection-v1';
+ let inventory={};
+ try{const parsed=JSON.parse(localStorage.getItem(key)||'{}');if(parsed&&typeof parsed==='object'&&!Array.isArray(parsed))inventory=parsed;}catch(e){}
+ for(const [,file] of selected){const count=Number(inventory[file]);inventory[file]=(Number.isSafeInteger(count)&&count>=0?count:0)+1;}
+ try{localStorage.setItem(key,JSON.stringify(inventory));return true;}catch(e){return false;}
+}
 function showCards(){
  const shuffled=[...cards];
  for(let i=shuffled.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]];}
+ const selected=shuffled.slice(0,5);
+ const saved=saveCards(selected);
+ status.textContent=saved?"Your five cards have been saved to your Collection!":"Your five cards! Local saving is unavailable in this browser.";
  reveal.replaceChildren();
- shuffled.slice(0,5).forEach(([name,file],i)=>{
+ selected.forEach(([name,file],i)=>{
    const el=document.createElement('div');el.className='reveal-card';el.style.animationDelay=(i*0.12)+'s';
    const img=document.createElement('img');img.src='cards/'+file;img.alt=name;img.loading='lazy';
    img.addEventListener('error',()=>{const fallback=document.createElement('div');fallback.className='missing-card';fallback.textContent=name+' — image awaiting upload';img.replaceWith(fallback);});
