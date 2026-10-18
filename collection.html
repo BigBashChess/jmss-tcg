@@ -16,10 +16,10 @@
 </style></head>
 <body class="background">
 <nav class="top-nav" aria-label="Main navigation"><a href="index.html"><img src="index_images/home_icon.png" alt="">Home</a><a href="collection.html"><img src="index_images/collection_icon.png" alt="">Collection</a></nav>
-<main class="site-main"><section class="hero"><p class="eyebrow">JMSS TRADING CARD GAME</p><h1>Your Collection</h1><p class="subtext">Every card you open is saved on this device. Duplicates stack together.</p>
+<main class="site-main"><section class="hero"><p class="eyebrow">JMSS TRADING CARD GAME</p><h1>Your Collection</h1><p class="subtext">Only cards you own appear here. Duplicates stack together.</p>
 <div class="collection-summary"><div class="collection-stat"><strong id="unique-count">0 / 16</strong>Unique cards</div><div class="collection-stat"><strong id="total-count">0</strong>Total cards owned</div></div><p id="collection-notice" class="collection-empty" aria-live="polite"></p>
-<a class="button" href="index.html">Open more packs</a></section><section id="collection-grid" class="collection-grid" aria-label="All collectible cards"></section></main>
-<nav class="bottom-nav"><a href="index.html">Home</a><a href="collection.html">Collection</a><a href="trade.html">Trade</a></nav>
+<a class="button" href="index.html">Open packs</a> <a class="button" href="card-index.html">Card Index</a></section><section id="collection-grid" class="collection-grid" aria-label="All collectible cards"></section></main>
+<nav class="bottom-nav"><a href="index.html">Home</a><a href="collection.html">Collection</a><a href="card-index.html">Card Index</a><a href="trade.html">Trade</a></nav>
 <script>
 (function(){
 const cards=[
@@ -31,7 +31,7 @@ const countFor=file=>{const n=Number(inventory[file]);return Number.isSafeIntege
 let total=0,unique=0;
 const grid=document.getElementById('collection-grid');
 cards.forEach(([name,file])=>{
- const quantity=countFor(file);total+=quantity;if(quantity)unique++;
+ const quantity=countFor(file);if(!quantity)return;total+=quantity;unique++;
  const tile=document.createElement('article');tile.className='collection-card'+(quantity?'':' locked');
  const badge=document.createElement('span');badge.className='count';badge.textContent='×'+quantity;
  const img=document.createElement('img');img.src='cards/'+file;img.alt=name;img.loading='lazy';
