@@ -23,19 +23,47 @@
 .pack-reset:hover{background:#1976B9}
 @media(prefers-reduced-motion:reduce){.pack-art{transition:none}.pack-stage.opening .pack-art,.pack-stage.opening::after{animation:none}}
 .card-reveal{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:16px;max-width:1050px;margin:28px auto 12px;text-align:center}.card-reveal[hidden]{display:none}.reveal-card{animation:cardRise .55s ease both;min-width:0}.reveal-card img{display:block;width:100%;max-width:230px;margin:auto;border-radius:9px;box-shadow:0 12px 26px #0008}.reveal-card .missing-card{padding:25px 8px;border:1px solid #65D6F4;border-radius:10px;color:#9AB2C7}.pack-stage.opened{display:none}@keyframes cardRise{from{opacity:0;transform:translateY(30px) scale(.90)}to{opacity:1;transform:translateY(0) scale(1)}}@media(prefers-reduced-motion:reduce){.reveal-card{animation:none}} 
+
+/* Single-screen arcade home */
+html,body{height:100%;overflow:hidden}body{padding:0!important}
+.top-nav{height:66px;padding:0 max(14px,3vw);gap:10px;justify-content:space-between}
+.top-nav .brand{font-weight:900;letter-spacing:.07em;color:#65D6F4;white-space:nowrap}
+.nav-links{display:flex;align-items:center;justify-content:flex-end;gap:clamp(6px,2vw,22px)}
+.nav-links a,.bottom-nav a{display:flex;align-items:center;gap:7px;padding:10px 13px;border-radius:11px;font-size:.91rem;white-space:nowrap}
+.nav-links a:hover,.bottom-nav a:hover,.nav-links a.active,.bottom-nav a.active{background:#27618B;color:white}
+.bottom-nav{height:68px;padding:8px 14px;gap:4px}
+.arcade-main{position:fixed;top:66px;bottom:68px;left:0;right:0;width:100%;max-width:none;min-height:0;padding:clamp(8px,2vh,20px) 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(5px,1.2vh,14px);overflow:hidden}
+.arcade-hero{flex-shrink:0;text-align:center}
+.arcade-hero h1{font-size:clamp(1.35rem,3vw,2.5rem);margin:2px 0 4px}
+.arcade-hero .eyebrow{font-size:clamp(.56rem,.9vw,.8rem);margin:0}
+.arcade-hero .subtext{margin:0;font-size:clamp(.73rem,1.1vw,.95rem)}
+.arcade-play{width:100%;min-height:0;max-width:1250px;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(5px,1.2vh,12px)}
+.pack-stage{min-height:0;flex:1;width:100%;overflow:hidden}
+.pack-stage::before{width:min(36vh,320px);height:min(36vh,320px)}
+.pack-art{height:min(48vh,390px);max-height:100%;width:auto;max-width:min(74vw,290px)}
+.pack-click{height:100%;display:grid;place-items:center}
+.pack-instructions{margin:0;font-size:clamp(.78rem,1.4vw,1rem);min-height:1.2em}
+.pack-progress{margin:0;flex-shrink:0;width:min(270px,80vw)}
+.pack-reset{margin:0 auto;flex-shrink:0;padding:9px 16px}
+.card-reveal{width:100%;max-width:1150px;min-height:0;flex:1;margin:0;display:flex;align-items:center;justify-content:center;gap:clamp(5px,1vw,15px);overflow-x:auto;overflow-y:hidden;padding:6px 3px}
+.reveal-card{flex:0 1 190px;min-width:0;max-height:100%;display:grid;place-items:center}
+.reveal-card img{height:auto;max-height:min(47vh,420px);width:100%;object-fit:contain}
+.card-reveal[hidden]{display:none}
+@media(max-width:640px){.top-nav{height:56px}.top-nav .brand{font-size:.85rem}.nav-links{gap:2px}.nav-links a{font-size:.75rem;padding:7px}.nav-links a img{display:none}.bottom-nav{height:60px}.bottom-nav a{font-size:.73rem;padding:8px}.arcade-main{top:56px;bottom:60px;padding:8px}.arcade-hero .subtext{display:none}.pack-art{height:min(51dvh,360px)}.card-reveal{justify-content:flex-start;gap:7px}.reveal-card{flex:0 0 clamp(120px,39vw,175px)}.reveal-card img{max-height:42dvh}}
+@media(max-height:540px){.arcade-hero .subtext,.arcade-hero .eyebrow{display:none}.arcade-hero h1{font-size:1.2rem}.arcade-main{gap:3px}.pack-art{height:45dvh}.pack-progress{height:5px}.card-reveal img{max-height:36dvh}}
 </style>
 </head>
 <body class="background">
-<nav class="top-nav" aria-label="Main navigation"><a href="index.html"><img src="index_images/home_icon.png" alt="">Home</a><a href="collection.html"><img src="index_images/collection_icon.png" alt="">Collection</a><a href="sign_in_programmable.html">Sign in</a></nav>
-<main class="site-main">
-<section class="hero"><p class="eyebrow">JOHN MONASH SCIENCE SCHOOL</p><h1>JMSS Trading Card Game</h1><p class="subtext">Tap the pack to spin it and reveal a surprise.</p></section>
-<section aria-label="Pack opening" class="hero">
+<nav class="top-nav" aria-label="Main navigation"><a class="brand" href="index.html">JMSS <span style="color:#F2F8FC">TCG</span></a><div class="nav-links"><a class="active" href="index.html">Packs</a><a href="collection.html">Collection</a><a href="trade.html">Trade</a><a href="sign_in_programmable.html">Sign in</a></div></nav>
+<main class="arcade-main">
+<section class="arcade-hero"><p class="eyebrow">JOHN MONASH SCIENCE SCHOOL</p><h1>Open Your Next Pack</h1><p class="subtext">Five cards per pack · All cards saved locally</p></section>
+<section aria-label="Pack opening" class="arcade-play">
 <div class="pack-stage" id="pack-stage"><button type="button" id="pack-button" class="pack-click" aria-label="Rotate the JMSS card pack"><img id="pack-art" class="pack-art" src="index_images/cardpacks/common.png" alt="Blue JMSS TCG booster pack"></button></div>
 <p id="pack-status" class="pack-instructions" aria-live="polite">Click the pack 6 times to open it!</p>
 <div class="pack-progress" role="progressbar" aria-label="Progress to pack opening" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0" id="pack-progress"><div id="pack-fill"></div></div>
 <div id="card-reveal" class="card-reveal" aria-label="Five revealed cards" hidden></div><button type="button" class="pack-reset" id="pack-reset">Open another pack</button>
 </section>
-</main><nav class="bottom-nav"><a href="index.html">Home</a><a href="collection.html">Collection</a><a href="trade.html">Trade</a></nav>
+</main><nav class="bottom-nav" aria-label="Quick navigation"><a class="active" href="index.html">🎴 Open packs</a><a href="collection.html">🗂️ My collection</a><a href="trade.html">⇄ Trade</a><a href="create_your_account.html">👤 Sign up</a></nav>
 <script>
 (function(){
 const maxClicks=6, stage=document.getElementById('pack-stage'), button=document.getElementById('pack-button'), art=document.getElementById('pack-art'),status=document.getElementById('pack-status'),progress=document.getElementById('pack-progress'),fill=document.getElementById('pack-fill'),reset=document.getElementById('pack-reset');
