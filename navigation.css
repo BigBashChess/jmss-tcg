@@ -1,4 +1,4 @@
-/* Shared navigation on all JMSS TCG pages */
+/* Displays the same navigation on every page. */
 :root {
   --nav-top-h:60px;
   --nav-bottom-h:64px
@@ -105,7 +105,7 @@ body {
     font-size:1em
   }
 }
-/* Transparent, tightly-cropped JMSS TCG navigation artwork */
+/* Sizes custom icons for desktop and mobile. */
 .top-nav .nav-account a {
   display:inline-flex;
   align-items:center;
