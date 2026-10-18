@@ -13,3 +13,15 @@ body{padding-top:var(--nav-top-h);padding-bottom:var(--nav-bottom-h)}
 .top-nav a:hover,.bottom-nav a:hover,.bottom-nav a[aria-current="page"]{background:#25658D;color:#fff}
 .nav-icon{font-size:1.1em}
 @media(max-width:520px){:root{--nav-top-h:54px;--nav-bottom-h:60px}.top-nav .nav-brand{font-size:.89rem}.top-nav .nav-account a{font-size:.73rem;padding:8px 9px}.bottom-nav{gap:2px;padding:5px!important}.bottom-nav a{font-size:.71rem;gap:3px;padding:8px 2px}.nav-icon{font-size:1em}}
+
+/* Transparent, tightly-cropped JMSS TCG navigation artwork */
+.top-nav .nav-account a{display:inline-flex;align-items:center;gap:5px}
+.nav-art-icon{display:block!important;width:31px!important;height:31px!important;max-width:none;object-fit:contain;flex-shrink:0;transform:none!important}
+.top-nav .nav-account .nav-art-icon{width:25px!important;height:25px!important}
+.bottom-nav a{gap:6px}
+@media(max-width:520px){
+  .nav-art-icon{width:26px!important;height:26px!important}
+  .top-nav .nav-account .nav-art-icon{width:20px!important;height:20px!important}
+  .top-nav .nav-account a{gap:3px}
+  .bottom-nav a{flex-direction:column;gap:0;padding:3px 1px;font-size:.67rem}
+}
