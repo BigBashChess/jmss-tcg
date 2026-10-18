@@ -1,5 +1,12 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#101D35"><link rel="icon" href="index_images/favicon.png"><link rel="stylesheet" href="global.css"><title>Trading Room | JMSS TCG</title>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101D35">
+<link rel="icon" href="index_images/favicon.png">
+<link rel="stylesheet" href="global.css">
+<title>Trading Room | JMSS TCG</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;padding-bottom:0!important;color:#F2F8FC}
@@ -35,22 +42,58 @@ body{margin:0;padding-bottom:0!important;color:#F2F8FC}
 @media(max-width:850px){.trade-layout{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) minmax(185px,36dvh);gap:8px;padding:8px}.trade-side{display:grid;grid-template-columns:1fr 1fr;gap:8px}.inventory{max-height:27dvh}.chat-log{max-height:15dvh}.trade-board{gap:6px}.trade-panel{padding:8px}.offer-slot{max-height:130px}.trade-actions button{padding:8px 12px}}
 @media(max-width:490px){.trade-top{height:49px;padding:0 9px;font-size:.83rem}.trade-layout{height:calc(100dvh - 49px);grid-template-rows:minmax(0,1fr) minmax(0,38dvh)}.trade-side{grid-template-columns:1fr 1fr;gap:6px}.side-card{padding:7px}.inventory{grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}.chat-presets{gap:3px}.chat-presets button{font-size:.64rem;padding:5px 2px}.chat-log{min-height:70px}.offer-slot{max-height:110px}.panel-head{font-size:.76rem}.panel-head small{font-size:.65rem}}
 </style>
-<link rel="stylesheet" href="navigation.css"><style>.trade-layout{height:calc(100dvh - var(--nav-top-h) - var(--nav-bottom-h))!important;margin-top:0!important;margin-bottom:0!important}@media(max-width:490px){.trade-layout{height:calc(100dvh - var(--nav-top-h) - var(--nav-bottom-h))!important}}</style><link rel="stylesheet" href="design.css"></head>
+<link rel="stylesheet" href="navigation.css">
+<style>.trade-layout{height:calc(100dvh - var(--nav-top-h) - var(--nav-bottom-h))!important;margin-top:0!important;margin-bottom:0!important}@media(max-width:490px){.trade-layout{height:calc(100dvh - var(--nav-top-h) - var(--nav-bottom-h))!important}}</style>
+<link rel="stylesheet" href="design.css">
+</head>
 <body class="background">
-<nav id="site-top-nav"></nav>
+<nav id="site-top-nav">
+</nav>
 <main class="trade-layout">
 <section class="trade-board" aria-label="Trading table">
 <div class="trade-panel">
-<div class="panel-head"><span>🤖 Demo partner's offer</span><small>Simulated player</small></div>
-<div class="offer-list" id="partner-offer"></div>
+<div class="panel-head">
+<span>🤖 Demo partner's offer</span>
+<small>Simulated player</small>
 </div>
-<div><div class="trade-actions"><button class="accept" type="button" id="accept">✓ Accept</button><button class="decline" type="button" id="decline">✕ Decline</button></div><div class="trade-toast" id="trade-status" role="status" aria-live="polite">Select up to 3 cards from your collection</div></div>
-<div class="trade-panel mine"><div class="panel-head"><span>🃏 Your offer</span><small id="offer-count">0 / 3 cards</small></div><div class="offer-list" id="my-offer"></div></div>
+<div class="offer-list" id="partner-offer">
+</div>
+</div>
+<div>
+<div class="trade-actions">
+<button class="accept" type="button" id="accept">✓ Accept</button>
+<button class="decline" type="button" id="decline">✕ Decline</button>
+</div>
+<div class="trade-toast" id="trade-status" role="status" aria-live="polite">Select up to 3 cards from your collection</div>
+</div>
+<div class="trade-panel mine">
+<div class="panel-head">
+<span>🃏 Your offer</span>
+<small id="offer-count">0 / 3 cards</small>
+</div>
+<div class="offer-list" id="my-offer">
+</div>
+</div>
 </section>
 <aside class="trade-side">
-<section class="side-card"><h2 class="side-title">Your cards <span id="owned-summary" style="font-weight:400;color:#AFCDE2;font-size:.8rem"></span></h2><div id="inventory" class="inventory" aria-label="Choose cards to offer"></div><p style="font-size:.74rem;color:#AFCDE2;margin:8px 0 0">Tap a card to add it. Remove a card from your offer to choose another.</p></section>
-<section class="side-card" style="display:flex;flex-direction:column"><h2 class="side-title">Quick Chat <span style="font-size:.68rem;color:#AFCDE2;font-weight:400">Preset messages</span></h2><div class="chat-log" id="chat-log" aria-live="polite"></div><div class="chat-presets" id="chat-presets"></div></section>
-</aside></main>
+<section class="side-card">
+<h2 class="side-title">Your cards <span id="owned-summary" style="font-weight:400;color:#AFCDE2;font-size:.8rem">
+</span>
+</h2>
+<div id="inventory" class="inventory" aria-label="Choose cards to offer">
+</div>
+<p style="font-size:.74rem;color:#AFCDE2;margin:8px 0 0">Tap a card to add it. Remove a card from your offer to choose another.</p>
+</section>
+<section class="side-card" style="display:flex;flex-direction:column">
+<h2 class="side-title">Quick Chat <span style="font-size:.68rem;color:#AFCDE2;font-weight:400">Preset messages</span>
+</h2>
+<div class="chat-log" id="chat-log" aria-live="polite">
+</div>
+<div class="chat-presets" id="chat-presets">
+</div>
+</section>
+</aside>
+</main>
 <script>
 (function(){
 const cards=[
@@ -70,4 +113,10 @@ document.getElementById('accept').addEventListener('click',()=>{if(!offer.length
 document.getElementById('decline').addEventListener('click',()=>{offer.splice(0);render();status.textContent='Trade declined. Your cards are unchanged.';chat('No problem!',false);});
 render();
 })();
-</script><nav id="site-bottom-nav"></nav><script src="navigation.js"></script></body></html>
+</script>
+<nav id="site-bottom-nav">
+</nav>
+<script src="navigation.js">
+</script>
+</body>
+</html>
