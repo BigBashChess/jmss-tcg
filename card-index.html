@@ -21,25 +21,30 @@
 <a class="button" href="index.html">Open packs</a> <a class="button" href="collection.html">My Collection</a></section><section id="collection-grid" class="collection-grid" aria-label="Card Index"></section></main>
 <nav id="site-bottom-nav"></nav>
 <script>
-(function(){
-const cards=[
-["Flush Sac Anderson","flush-sac-anderson.webp"],["Algorithm Albrecht","algorithm-albrecht.webp"],["Stephen Finchy","stephen-finchy.webp"],["Peter Thompson","peter-thompson.webp"],["Vincenzo Piscioneri","vincenzo-piscioneri.webp"],["Romanian Gavrilescu","romanian-gavrilescu.webp"],["Rimkevicius","rimkevicius.webp"],["Scott Chittleborough","scott-chittleborough.webp"],["Kermond","kermond.webp"],["Rainy Xia","rainy-xia.webp"],["Sunny Xia","sunny-xia.webp"],["Muppet Finchy","muppet-finchy.webp"],["Dr Driscoll","dr-driscoll.webp"],["Danger Grainger","danger-grainger.webp"],["Gen Z Clarke","gen-z-clarke.webp"],["Bonehead Kermond","bonehead-kermond.webp"]
-];
+(async function(){
+const grid=document.getElementById('collection-grid'),notice=document.getElementById('collection-notice');
+let records=[];
+try{const response=await fetch('cards.json',{cache:'no-cache'});if(!response.ok)throw Error('Unable to load card database');records=await response.json();}
+catch(err){notice.textContent='The card database could not be loaded. Please refresh.';return;}
 let inventory={};
-try{const parsed=JSON.parse(localStorage.getItem('jmss-tcg-collection-v1')||'{}');if(parsed&&typeof parsed==='object'&&!Array.isArray(parsed))inventory=parsed;}catch(e){document.getElementById('collection-notice').textContent='Could not read saved cards in this browser.';}
-const countFor=file=>{const n=Number(inventory[file]);return Number.isSafeInteger(n)&&n>0?n:0;};
-let total=0,unique=0;
-const grid=document.getElementById('collection-grid');
-cards.forEach(([name,file])=>{
- const quantity=countFor(file);total+=quantity;if(quantity)unique++;
- const tile=document.createElement('article');tile.className='collection-card'+(quantity?'':' locked');
- const badge=document.createElement('span');badge.className='count';badge.textContent=quantity?'×'+quantity:'?';
- const img=document.createElement('img');img.src='cards/'+file;img.alt=name;img.loading='lazy';
- const caption=document.createElement('div');caption.className='card-title';caption.textContent=quantity?name:'Unknown card';
+try{const x=JSON.parse(localStorage.getItem('jmss-tcg-collection-v1')||'{}');if(x&&typeof x==='object'&&!Array.isArray(x))inventory=x;}catch(err){}
+const countFor=file=>{const n=Number(inventory[file]);return Number.isSafeInteger(n)&&n>0?n:0};
+let total=0,unique=0;grid.replaceChildren();
+for(const card of records){
+ const count=card.image?countFor(card.image):0;
+ const owned=count>0; if(owned){unique++;total+=count;}
+ const tile=document.createElement('article');tile.className='collection-card'+(owned?'':' locked');
+ const badge=document.createElement('span');badge.className='count';badge.textContent=owned?'×'+count:'?';
+ const img=document.createElement('img');img.alt=owned?card.name:'Undiscovered card';img.loading='lazy';
+ // Never request hidden artwork for undiscovered entries.
+ if(owned)img.src='cards/'+card.image;
+ const caption=document.createElement('div');caption.className='card-title';
+ caption.textContent=owned?(card.name+(card.subtitle?' — '+card.subtitle:'')):'Unknown card';
+ tile.title='Card #'+card.id+(owned?' — '+card.rarity:'');
  tile.append(img,badge,caption);grid.append(tile);
-});
-document.getElementById('unique-count').textContent=unique+' / '+cards.length;
+}
+document.getElementById('unique-count').textContent=unique+' / '+records.length;
 document.getElementById('total-count').textContent=total.toLocaleString();
-if(!total)document.getElementById('collection-notice').textContent='Open packs to discover your first card!';
+if(!unique)notice.textContent='Open packs to discover your first card!';
 })();
 </script><script src="navigation.js"></script></body></html>
